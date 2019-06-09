@@ -27,7 +27,7 @@ class UserProfileManager(BaseUserManager):
 
 
 class UserProfile(AbstractBaseUser, PermissionsMixin):
-    """Database model for users in the sustem"""
+    """Database model for users in the system"""
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
@@ -36,17 +36,16 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     objects = UserProfileManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELD = ['name']
+    REQUIRED_FIELDS = ['name']
 
     def get_full_name(self):
-        """Retrive full name of user"""
+        """Retrieve full name for user"""
         return self.name
 
     def get_short_name(self):
-        """Retrive short name of user"""
+        """Retrieve short name of user"""
         return self.name
-    
+
     def __str__(self):
-        """Return string representation of our user"""
+        """Return string representation of user"""
         return self.email
-    
